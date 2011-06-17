@@ -1,6 +1,22 @@
 <?php
 
 /**
+ * Implements hook_permission().
+ */
+function admin_toggle_permission() {
+  return array(
+    'use admin toggle' => array(
+      'title' => t('Use admin toggle'),
+      'description' => t('TODO'),
+    ),
+    'administer admin toggle' => array(
+      'title' => t('Administer admin toggle'),
+      'description' => t('TODO'),
+    ),
+  );
+}
+
+/**
  * Implements hook_init().
  */
 function admin_toggle_init() {
@@ -28,31 +44,96 @@ function admin_toggle_init() {
         return;
       }
     }
-
+    
     drupal_add_js(drupal_get_path('module', 'admin_toggle') . '/js/admin_toggle.js');
     drupal_add_css(drupal_get_path('module', 'admin_toggle') . '/css/admin_toggle.css');
   }
 }
 
 /**
- * Implements hook_permission().
+ * Implements hook_preprocess_HOOK().
  */
-function admin_toggle_permission() {
-  return array(
-    'use admin toggle' => array(
-      'title' => t('Use admin toggle'),
-      'description' => t('TODO'),
-    ),
-  );
+function admin_toggle_preprocess_html(&$vars) {
+  if (variable_get('admin_toggle_show_show_messages_toggle', 1)) {
+    $vars['classes_array'][] = 'admin-toggle-messages';
+  }
+  
+  $vars['classes_array'][] = 'admin-toggle-tabs-' . variable_get('admin_toggle_show_admin_tabs', 'yes');
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ * 
+ * Override or insert variables into the block templates.
+ *
+ * @param $vars
+ *   An array of variables to pass to the theme template.
+ */
+function admin_toggle_preprocess_block(&$vars) {
+  $vars['edit_links_array'] = array();
+  if (user_access('administer blocks')) {
+    include_once drupal_get_path('module', 'admin_toggle') . '/includes/template.block-editing.inc';
+    admin_toggle_preprocess_block_editing($vars, $hook);
+    $vars['classes_array'][] = 'with-block-editing';
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function admin_toggle_menu() {
+  $items = array(
+    'admin/config/development/admin-toggle' => array(
+      'title' => 'Admin toggle settings',
+      'description' => '',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('admin_toggle_admin'),
+      'access callback' => 'user_access',
+      'access arguments' => array('administer admin toggle'),
+      'file' => 'admin_toggle.admin.inc',
+      ),
+  );
+  
+  return $items;
+}
 
 /**
  * Implements hook_page_build().
  */
 function admin_toggle_page_build(&$page) {
-  $page['page_bottom']['admin_toggle'] = array(
-    '#markup' => '<a href="#" class="admin-toggle-admin-tabs active"></a>
-    <a href="#" class="admin-toggle-messages active"></a>',
-  );
+  if (variable_get('admin_toggle_show_messages_toggle', 1)) {
+    $page['page_bottom']['admin_toggle_messages'] = array(
+      '#markup' => '<a href="#" class="admin-toggle-messages active"></a>',
+    );
+  }
+  if (variable_get('admin_toggle_show_admin_tabs', 'yes') == 'yes') {
+    $page['page_bottom']['admin_toggle_tabs'] = array(
+      '#markup' => '<a href="#" class="admin-toggle-admin-tabs active"></a>',
+    );
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function admin_toggle_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  if (isset($data['tabs'][0]) && variable_get('admin_toggle_show_admin_tabs', 'yes') == 'hover') {
+    $admin_text_settings = variable_get('admin_toggle_admin_text_settings', '');
+    $raw_titles = explode("\r\n", $admin_text_settings);
+    $titles = array();
+    foreach ($raw_titles as $content) {
+      $title_parts = explode('|', $content);
+      $titles[strtolower($title_parts[0])] = $title_parts[1];
+    }
+    for ($i = 0; $i < $data['tabs'][0]['count']; $i++) {
+      $link_title = strtolower($data['tabs'][0]['output'][$i]['#link']['title']);
+      $data['tabs'][0]['output'][$i]['#link']['localized_options'] = array(
+        'attributes' => array(
+          'id' => $link_title . '-local-task',
+          'title' => $titles[$link_title],
+          'alt' => $titles[$link_title],
+        ),
+      );
+    }
+  }
 }

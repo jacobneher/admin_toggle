@@ -1,3 +1,10 @@
+Version 1.1
+-----------
+- Added admin settings page/menu
+- Added ability to set whether to show messages toggle
+- Added ability to set whether to show admin tabs or have them hover
+- Added preliminary code from Zen theme to have block edit links ** NOT FUNCTIONING **
+
 Version 1.0
 -----------
 Initial release

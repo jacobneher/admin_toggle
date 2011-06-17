@@ -1,5 +1,5 @@
-.admin-toggle-admin-tabs,
-.admin-toggle-messages {
+a.admin-toggle-admin-tabs,
+a.admin-toggle-messages {
   height: 22px;
   position: fixed;
   right: 0;
@@ -7,29 +7,35 @@
   z-index: 999;
 }
 
-.admin-toggle-admin-tabs {
+a.admin-toggle-admin-tabs {
   top: 140px;
 }
-.admin-toggle-messages {
+
+a.admin-toggle-messages {
+  top: 140px;
+}
+
+a.admin-toggle-messages ~ a.admin-toggle-admin-tabs {
   top: 170px;
 }
 
-.admin-toggle-admin-tabs:hover,
-.admin-toggle-admin-tabs:focus {
+
+a.admin-toggle-admin-tabs:hover,
+a.admin-toggle-admin-tabs:focus {
   width: 91px;
 }
 
-.admin-toggle-messages:hover,
-.admin-toggle-messages:focus {
+a.admin-toggle-messages:hover,
+a.admin-toggle-messages:focus {
   width: 81px;
 }
 
 
-.admin-toggle-admin-tabs {
+a.admin-toggle-admin-tabs {
   background: url('../images/admin-tabs-toggle.png') no-repeat scroll 0 -22px transparent;
 }
 
-.admin-toggle-messages {
+a.admin-toggle-messages {
   background: url('../images/messages-toggle.png') no-repeat scroll 0 -22px transparent;
 }
 
@@ -40,3 +46,41 @@
 .admin-toggle-messages.active {
   background-position: 0 0;
 }
+
+/* Admin tabs - no */
+body.admin-toggle-tabs-no div.tabs {
+  display: none;
+}
+
+/* Hovering tabs enabled */
+body.admin-toggle-tabs-hover div.tabs {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+
+  body.admin-toggle-tabs-hover div.tabs li {
+    margin-right: 0;
+  }
+
+  body.admin-toggle-tabs-hover div.tabs a {
+    display: block;
+    float: left;
+    margin: 0 5px;
+    height: 32px;
+    width: 32px;
+    text-indent: -10000px;
+  }
+
+  body.admin-toggle-tabs-hover div.tabs a#view-local-task {
+    background: url('../images/refresh.png') no-repeat scroll 0 0 transparent;
+  }
+
+  body.admin-toggle-tabs-hover div.tabs a#edit-local-task {
+    background: url('../images/edit.png') no-repeat scroll 0 0 transparent;
+  }
+
+  body.admin-toggle-tabs-hover div.tabs a#devel-local-task {
+    background: url('../images/devel.png') no-repeat scroll 0 0 transparent;
+  }

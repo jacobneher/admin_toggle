@@ -2,4 +2,4 @@ name = Admin Toggle
 description = Toggle the admin tabs and messages that display on the screen.
 package = Custom
 core = 7.x
-version = 7.x-1.0
+version = 7.x-1.1

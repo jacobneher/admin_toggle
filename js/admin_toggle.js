@@ -22,6 +22,15 @@
         $('div.messages').css('display', 'block');
       }
     });
+    
+    $('body.admin-toggle-tabs-hover #region-content').hover(
+      function() {
+        $('div.tabs').fadeIn('fast');
+      },
+      function() {
+        $('div.tabs').fadeOut('fast');
+      }
+    );
   }
   }
 })(jQuery);
