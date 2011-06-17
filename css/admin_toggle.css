@@ -1,0 +1,42 @@
+.admin-toggle-admin-tabs,
+.admin-toggle-messages {
+  height: 22px;
+  position: fixed;
+  right: 0;
+  width: 24px;
+  z-index: 999;
+}
+
+.admin-toggle-admin-tabs {
+  top: 140px;
+}
+.admin-toggle-messages {
+  top: 170px;
+}
+
+.admin-toggle-admin-tabs:hover,
+.admin-toggle-admin-tabs:focus {
+  width: 91px;
+}
+
+.admin-toggle-messages:hover,
+.admin-toggle-messages:focus {
+  width: 81px;
+}
+
+
+.admin-toggle-admin-tabs {
+  background: url('../images/admin-tabs-toggle.png') no-repeat scroll 0 -22px transparent;
+}
+
+.admin-toggle-messages {
+  background: url('../images/messages-toggle.png') no-repeat scroll 0 -22px transparent;
+}
+
+.admin-toggle-admin-tabs.active {
+  background-position: 0 0;
+}
+
+.admin-toggle-messages.active {
+  background-position: 0 0;
+}

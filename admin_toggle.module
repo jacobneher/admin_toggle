@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * Implements hook_init().
+ */
+function admin_toggle_init() {
+  // Let's make sure the user has permission AND we are not on an unnecessary page
+  if (user_access('use admin toggle')) {
+    if (arg(0) == 'admin') {
+      return;
+    }
+    // If we are on a node edit or creation page...
+    if (arg(0) == 'node' && (arg(2) == 'edit' || arg(1) == 'add')) {
+      return;
+    }
+
+    /***  SPECIFIC MODULES  ***/
+    // Handle pages if webform module is enabled
+    if (module_exists('webform')) {
+      if (arg(0) == 'node' && (arg(2) == 'webform' || arg(2) == 'webform-results')) {
+        return;
+      }
+    }
+    
+    // Handles pages if panels module is enabled
+    if (module_exists('panels')) {
+      if (arg(0) == 'node' && ((arg(2) == 'panel_content') || arg(2) == 'panel_layout')) {
+        return;
+      }
+    }
+
+    drupal_add_js(drupal_get_path('module', 'admin_toggle') . '/js/admin_toggle.js');
+    drupal_add_css(drupal_get_path('module', 'admin_toggle') . '/css/admin_toggle.css');
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function admin_toggle_permission() {
+  return array(
+    'use admin toggle' => array(
+      'title' => t('Use admin toggle'),
+      'description' => t('TODO'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_page_build().
+ */
+function admin_toggle_page_build(&$page) {
+  $page['page_bottom']['admin_toggle'] = array(
+    '#markup' => '<a href="#" class="admin-toggle-admin-tabs active"></a>
+    <a href="#" class="admin-toggle-messages active"></a>',
+  );
+}
