@@ -1,7 +1,7 @@
 (function ($) {
   Drupal.behaviors.quickbar = {
   attach: function (context, settings) {
-    $('.admin-toggle-admin-tabs').click(function() {
+    $('a.admin-toggle-admin-tabs').click(function() {
       if ($(this).hasClass('active')) {
         $(this).removeClass('active');
         $('div.tabs').css('display', 'none');
@@ -12,7 +12,7 @@
       }
     });
     
-    $('.admin-toggle-messages').click(function() {
+    $('a.admin-toggle-messages').click(function() {
       if ($(this).hasClass('active')) {
         $(this).removeClass('active');
         $('div.messages').css('display', 'none');

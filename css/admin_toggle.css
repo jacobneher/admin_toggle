@@ -116,5 +116,5 @@ body.admin-toggle-tabs-hover .block-admin-wrapper {
   }
   
   body.admin-toggle-tabs-hover .block-admin-wrapper a.block-config {
-    background: url('../images/buttons.png') no-repeat scroll 0 -36px transparent;
+    background: url('../images/buttons.png') no-repeat scroll -32px -36px transparent;
   }  
