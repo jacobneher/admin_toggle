@@ -78,25 +78,6 @@ function admin_toggle_preprocess_block(&$vars) {
   }
 }
 
-/**
- * Implements hook_menu().
- */
-function admin_toggle_menu() {
-  $items = array(
-    'admin/config/development/admin-toggle' => array(
-      'title' => 'Admin toggle settings',
-      'description' => '',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('admin_toggle_admin'),
-      'access callback' => 'user_access',
-      'access arguments' => array('administer admin toggle'),
-      'file' => 'admin_toggle.admin.inc',
-      ),
-  );
-  
-  return $items;
-}
-
 
 /**
  * Implements hook_form_FORM_ID_alter().
