@@ -47,8 +47,10 @@ a.admin-toggle-messages {
   background-position: 0 0;
 }
 
-/* Admin tabs - no */
-body.admin-toggle-tabs-no div.tabs {
+/* Admin tabs - no
+   Admin tabs - yes, disabled by default */
+body.admin-toggle-tabs-no div.tabs,
+body.admin-toggle-tabs-default-display-disabled div.tabs {
   display: none;
 }
 

@@ -1,5 +1,5 @@
 (function ($) {
-  Drupal.behaviors.quickbar = {
+  Drupal.behaviors.admin_toggle = {
   attach: function (context, settings) {
     $('a.admin-toggle-admin-tabs').click(function() {
       if ($(this).hasClass('active')) {
