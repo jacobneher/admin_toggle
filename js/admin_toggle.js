@@ -31,6 +31,16 @@
         $('div.tabs').fadeOut('fast');
       }
     );
+    
+    // Block handling
+    $('body.admin-toggle-tabs-hover .block').hover(
+      function() {
+        $('.block-admin-wrapper', this).fadeIn('fast');
+      },
+      function() {
+        $('.block-admin-wrapper', this).fadeOut('fast');
+      }
+    );
   }
   }
 })(jQuery);

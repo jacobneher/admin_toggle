@@ -74,13 +74,47 @@ body.admin-toggle-tabs-hover div.tabs {
   }
 
   body.admin-toggle-tabs-hover div.tabs a#view-local-task {
-    background: url('../images/refresh.png') no-repeat scroll 0 0 transparent;
+    background: url('../images/buttons.png') no-repeat scroll 0 0 transparent;
   }
 
   body.admin-toggle-tabs-hover div.tabs a#edit-local-task {
-    background: url('../images/edit.png') no-repeat scroll 0 0 transparent;
+    background: url('../images/buttons.png') no-repeat scroll -36px 0 transparent;
   }
 
   body.admin-toggle-tabs-hover div.tabs a#devel-local-task {
-    background: url('../images/devel.png') no-repeat scroll 0 0 transparent;
+    background: url('../images/buttons.png') no-repeat scroll -73px 0 transparent;
   }
+  
+/**
+ * Blocks Admin
+ *********************************/
+body.admin-toggle-tabs-hover .block-admin-wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+  body.admin-toggle-tabs-hover .block-admin-wrapper > div {
+    float: left;
+    margin-right: 10px;
+  }
+  body.admin-toggle-tabs-hover .block-admin-wrapper > div:last-child {
+    margin-right: 0;
+  }
+
+  /* Compatibility with Omega/Alpha theme block debugging feature */
+  body.admin-toggle-tabs-hover.alpha-region-debug .block-admin-wrapper {
+    top: 40px;
+  }
+  
+  body.admin-toggle-tabs-hover .block-admin-wrapper a {
+    display: block;
+    width: 25px;
+    height: 25px;
+    text-indent: -10000px;
+  }
+  
+  body.admin-toggle-tabs-hover .block-admin-wrapper a.block-config {
+    background: url('../images/buttons.png') no-repeat scroll 0 -36px transparent;
+  }  
