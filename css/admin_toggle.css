@@ -62,15 +62,21 @@ body.admin-toggle-tabs-hover div.tabs {
   display: none;
 }
 
+  body.admin-toggle-tabs-hover div.tabs ul.primary {
+    border: none; /* Override defaults set by system.menus.css */
+  }
+  
   body.admin-toggle-tabs-hover div.tabs li {
     margin-right: 0;
   }
 
   body.admin-toggle-tabs-hover div.tabs a {
+    border: none; /* Override defaults set by system.menus.css */
     display: block;
     float: left;
     margin: 0 5px;
     height: 32px;
+    padding: 0; /* Override defaults set by system.menus.css */
     width: 32px;
     text-indent: -10000px;
   }
